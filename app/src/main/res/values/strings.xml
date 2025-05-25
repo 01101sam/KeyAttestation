@@ -41,11 +41,11 @@
     <string name="oem_root_cert_summary">This device trusts this root certificate, but it may not be trusted by others.</string>
 
     <string name="cert_chain">Certificate chain</string>
-    <string name="cert_chain_description">Certificate chain is a list of certificates used to authenticate a key. The chain starts with the certificate associated with that key, and each certificate is signed by the next in the chain. The chain ends with a root certificate, and the trustworthiness of the attestation depends on the root certificate of the chain..</string>
+    <string name="cert_chain_description">Certificate chain is a list of certificates used to authenticate a key. The chain starts with the certificate associated with that key, and each certificate is signed by the next in the chain. The chain ends with a root certificate, and the trustworthiness of the attestation depends on the root certificate of the chain.</string>
     <string name="cert_info">Certificate info</string>
     <string name="cert_subject">subject: </string>
-    <string name="cert_not_before">not before: </string>
-    <string name="cert_not_after">not after: </string>
+    <string name="cert_not_before">from: </string>
+    <string name="cert_not_after">until: </string>
     <string name="cert_error_sign">signature error: </string>
     <string name="cert_error_revoked">revoked: </string>
     <string name="cert_error_expired">expired: </string>
@@ -79,18 +79,18 @@
     </string>
     <string name="error_out_of_keys_transient">Currently no remotely provisioned keys for attestation</string>
     <string name="error_out_of_keys_transient_summary">
-    The key pool is exhausted. Please retry after networking.
+    The key pool is exhausted. Please try again with an internet connection.
     If the server temporarily refuses to issue keys, check for system updates.
     </string>
     <string name="error_unavailable_transient">Currently unable to attest</string>
     <string name="error_unavailable_transient_summary">
-    The problem is temporary. Adjust options in the menu or try again later.
+    The problem is temporary. Adjust options in the menu and try again.
     </string>
     <string name="error_keys_not_provisioned">No attestation keys</string>
     <string name="error_keys_not_provisioned_summary">
     Unable to fetch remotely provisioned attestation keys, and no factory provisioned attestation keys.
     </string>
-    <string name="error_remote_key_provisioning">Remote Key Provisioning Error</string>
+    <string name="error_remote_key_provisioning">Remote key provisioning error</string>
     <string name="error_remote_key_provisioning_summary">
     Unable to fetch attestation key from key provisioning server.
     </string>
@@ -171,19 +171,19 @@
     <string name="authorization_list_rootOfTrust">Root of trust</string>
     <string name="authorization_list_osVersion">OS version</string>
     <string name="authorization_list_osPatchLevel">OS patch level</string>
-    <string name="authorization_list_attestationApplicationId">app ID</string>
-    <string name="authorization_list_attestationIdBrand">brand</string>
-    <string name="authorization_list_attestationIdDevice">device</string>
-    <string name="authorization_list_attestationIdProduct">product</string>
-    <string name="authorization_list_attestationIdSerial">serial</string>
+    <string name="authorization_list_attestationApplicationId">App ID</string>
+    <string name="authorization_list_attestationIdBrand">Brand</string>
+    <string name="authorization_list_attestationIdDevice">Device</string>
+    <string name="authorization_list_attestationIdProduct">Product</string>
+    <string name="authorization_list_attestationIdSerial">Serial</string>
     <string name="authorization_list_attestationIdImei">IMEI</string>
-    <string name="authorization_list_attestationIdSecondImei">second IMEI</string>
+    <string name="authorization_list_attestationIdSecondImei">Second IMEI</string>
     <string name="authorization_list_attestationIdMeid">MEID</string>
-    <string name="authorization_list_attestationIdManufacturer">manufacturer</string>
-    <string name="authorization_list_attestationIdModel">model</string>
+    <string name="authorization_list_attestationIdManufacturer">Manufacturer</string>
+    <string name="authorization_list_attestationIdModel">Model</string>
     <string name="authorization_list_vendorPatchLevel">Vendor patch level</string>
     <string name="authorization_list_bootPatchLevel">Boot patch level</string>
-    <string name="authorization_list_mgfDigest">Rsa Oaep Mgf Digest</string>
+    <string name="authorization_list_mgfDigest">RSA-OAEP MGF digest</string>
     <string name="authorization_list_earlyBootOnly">Early boot only</string>
     <string name="authorization_list_usageCountLimit">Usage count limit</string>
     <string name="authorization_list_deviceUniqueAttestation">Device unique attestation</string>

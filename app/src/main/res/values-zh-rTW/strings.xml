@@ -181,7 +181,7 @@
     <string name="authorization_list_moduleHash">模組摘要</string>
 
     <string name="authorization_list_description"><![CDATA[
-    此資料結構包含金鑰對的屬性本身，如 Keymaster 或 KeyMint 硬體抽象層 (HAL) 中所定義。將這些值與裝置的目前狀態或一組預期值進行比較，以驗證金鑰對是否仍適用於您的應用程式。
+    此資料結構包含金鑰對的屬性本身，如 Keymaster 或 KeyMint 硬體抽象層（HAL）中所定義。將這些值與裝置的目前狀態或一組預期值進行比較，以驗證金鑰對是否仍適用於您的應用程式。
     ]]></string>
     <string name="authorization_list_purpose_description"><![CDATA[
     用於這組金鑰的用途組合。
@@ -199,7 +199,7 @@
     用於指定可與金鑰搭配使用的填充模式。此標記與 RSA 金鑰和 AES 金鑰有關。
     ]]></string>
     <string name="authorization_list_ecCurve_description"><![CDATA[
-    用於指定 Android 系統金鑰庫中，建立橢圓曲線 (EC) 金鑰對的參數集，該參數集使用 ECDSA 進行簽章和驗證。
+    用於指定 Android 系統金鑰庫中，建立橢圓曲線（EC）金鑰對的參數集，該參數集使用 ECDSA 進行簽章和驗證。
     ]]></string>
     <string name="authorization_list_rsaPublicExponent_description"><![CDATA[
     用於為 RSA 金鑰對指定公開指數的值。此標記只與 RSA 金鑰有關，而且是所有 RSA 金鑰都必需的標記。
@@ -223,7 +223,7 @@
     用於指定可用於授權此金鑰的使用者驗證器類型。
     ]]></string>
     <string name="authorization_list_authTimeout_description"><![CDATA[
-    用於指定金鑰在驗證後，可使用的時間長度 (以秒為單位，從通過身份驗證開始算起)。
+    用於指定金鑰在驗證後，可使用的時間長度（以秒為單位，從通過身份驗證開始算起）。
     ]]></string>
     <string name="authorization_list_allowWhileOnBody_description"><![CDATA[
     如果使用者身上仍佩戴著裝置，允許在金鑰身份驗證逾時後使用金鑰。請注意，安全的貼身感測器可以確定裝置是否正佩戴在使用者身上。

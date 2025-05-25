@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Key Attestation</string>
     <string name="use_shizuku">Usar Shizuku</string>
-    <string name="use_sak">Usar o atestado Knox</string>
+    <string name="use_sak">Usar atestado Knox</string>
     <string name="use_strongbox">Usar StrongBox</string>
     <string name="use_attest_key">Usar chave de atestado</string>
     <string name="import_attest_key">Importar chave de atestado</string>
@@ -44,8 +44,8 @@
     <string name="cert_chain_description">A cadeia de certificados é uma lista de certificados usados para autenticar uma chave. A cadeia começa com o certificado associado a essa chave, e cada certificado é assinado pelo próximo na cadeia. A cadeia termina com um certificado root, e a confiabilidade do atestado depende do certificado root da cadeia.</string>
     <string name="cert_info">Informações do certificado</string>
     <string name="cert_subject">assunto: </string>
-    <string name="cert_not_before">não antes: </string>
-    <string name="cert_not_after">não após: </string>
+    <string name="cert_not_before">a partir de: </string>
+    <string name="cert_not_after">até: </string>
     <string name="cert_error_sign">erro de assinatura: </string>
     <string name="cert_error_revoked">revogado: </string>
     <string name="cert_error_expired">expirado: </string>
@@ -62,7 +62,7 @@
     </string>
     <string name="error_cant_parse_cert">Não foi possível analisar o certificado</string>
     <string name="error_cant_parse_cert_summary">
-    O certificado está no formato errado ou há um recurso que ainda não é compatível.
+    O formato do certificado está incorreto ou contém recursos não suportados.
     </string>
     <string name="error_strongbox_unavailable">StrongBox não disponível</string>
     <string name="error_strongbox_unavailable_summary">
@@ -75,16 +75,16 @@
     </string>
     <string name="error_out_of_keys">Nenhuma chave provisionada remotamente para o atestado</string>
     <string name="error_out_of_keys_summary">
-    Este dispositivo não está registrado no servidor de provisionamento de chaves ou o servidor se recusa permanentemente a emitir chaves.
+    Este dispositivo não está registrado no servidor de provisionamento de chaves, ou o servidor se recusa permanentemente a emitir chaves.
     </string>
     <string name="error_out_of_keys_transient">Atualmente não há chaves provisionadas remotamente para o atestado</string>
     <string name="error_out_of_keys_transient_summary">
-    O conjunto de chaves está esgotado. Tente novamente após a rede.
+    O conjunto de chaves está esgotado. Tente novamente com uma conexão de internet.
     Se o servidor se recusar temporariamente a emitir chaves, verifique se há atualizações do sistema.
     </string>
     <string name="error_unavailable_transient">Atualmente não é possível atestar</string>
     <string name="error_unavailable_transient_summary">
-    O problema é temporário. Ajuste as opções do menu ou tente novamente mais tarde.
+    O problema é temporário. Ajuste as opções no menu e tente novamente.
     </string>
     <string name="error_keys_not_provisioned">Sem chaves de atestado</string>
     <string name="error_keys_not_provisioned_summary">
@@ -169,18 +169,18 @@
     <string name="authorization_list_osVersion">Versão do OS</string>
     <string name="authorization_list_osPatchLevel">Nível de patch do OS</string>
     <string name="authorization_list_attestationApplicationId">ID do app</string>
-    <string name="authorization_list_attestationIdBrand">marca</string>
-    <string name="authorization_list_attestationIdDevice">dispositivo</string>
-    <string name="authorization_list_attestationIdProduct">produto</string>
-    <string name="authorization_list_attestationIdSerial">número de série</string>
+    <string name="authorization_list_attestationIdBrand">Marca</string>
+    <string name="authorization_list_attestationIdDevice">Dispositivo</string>
+    <string name="authorization_list_attestationIdProduct">Produto</string>
+    <string name="authorization_list_attestationIdSerial">Número de série</string>
     <string name="authorization_list_attestationIdImei">IMEI</string>
-    <string name="authorization_list_attestationIdSecondImei">segundo IMEI</string>
+    <string name="authorization_list_attestationIdSecondImei">Segundo IMEI</string>
     <string name="authorization_list_attestationIdMeid">MEID</string>
-    <string name="authorization_list_attestationIdManufacturer">fabricante</string>
-    <string name="authorization_list_attestationIdModel">modelo</string>
+    <string name="authorization_list_attestationIdManufacturer">Fabricante</string>
+    <string name="authorization_list_attestationIdModel">Modelo</string>
     <string name="authorization_list_vendorPatchLevel">Nível do patch do fornecedor</string>
     <string name="authorization_list_bootPatchLevel">Nível do patch de inicialização</string>
-    <string name="authorization_list_mgfDigest">Rsa Oaep Mgf Digest</string>
+    <string name="authorization_list_mgfDigest">Resumo RSA-OAEP MGF</string>
     <string name="authorization_list_earlyBootOnly">Somente inicialização antecipada</string>
     <string name="authorization_list_usageCountLimit">Limite de contagem de uso</string>
     <string name="authorization_list_deviceUniqueAttestation">Atestado exclusivo do dispositivo</string>
@@ -288,7 +288,7 @@
     Fornece o número de série do dispositivo. Este campo é definido apenas ao solicitar atestado dos identificadores do dispositivo.
     ]]></string>
     <string name="authorization_list_attestationIdImei_description"><![CDATA[
-    Fornece o IMEI de um dos rádios do dispositvo para operações de geração/importação de chaves atestadas. Este campo é definido apenas ao solicitar atestado dos identificadores do dispositivo.
+    Fornece o IMEI de um dos rádios do dispositivo para operações de geração/importação de chaves atestadas. Este campo é definido apenas ao solicitar atestado dos identificadores do dispositivo.
     ]]></string>
     <string name="authorization_list_attestationIdSecondImei_description"><![CDATA[
     Fornece um IMEI adicional de um dos rádios do dispositivo para operações de geração/importação de chaves atestadas. Este campo é definido apenas ao solicitar atestado dos identificadores do dispositivo.
