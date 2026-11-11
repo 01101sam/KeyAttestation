@@ -207,6 +207,22 @@ public class AttestationRepository {
         }
     }
 
+    /**
+     * Parses the current certificates again, e.g. after the revocation list was updated.
+     */
+    public Resource<AttestationData> reparseCerts() {
+        try {
+            return Resource.Companion.success(AttestationData.parseCertificateChain(currentCerts));
+        } catch (Exception e) {
+            Log.w(AppApplication.TAG, "Reparse attestation error.", e);
+            if (e instanceof AttestationException) {
+                return Resource.Companion.error(e, null);
+            } else {
+                return Resource.Companion.error(new AttestationException(CODE_UNKNOWN, e), null);
+            }
+        }
+    }
+
     public Resource<AttestationData> loadCerts(ParcelFileDescriptor pfd) {
         currentCerts.clear();
         try {

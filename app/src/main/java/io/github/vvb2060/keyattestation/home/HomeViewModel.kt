@@ -19,7 +19,10 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.samsung.android.security.keystore.AttestationUtils
 import io.github.vvb2060.keyattestation.AppApplication
+import io.github.vvb2060.keyattestation.R
+import io.github.vvb2060.keyattestation.attestation.RevocationList
 import io.github.vvb2060.keyattestation.keystore.KeyStoreManager
+import io.github.vvb2060.keyattestation.repository.AttestationData
 import io.github.vvb2060.keyattestation.repository.AttestationRepository
 import io.github.vvb2060.keyattestation.repository.BaseData
 import io.github.vvb2060.keyattestation.util.Resource
@@ -221,6 +224,25 @@ class HomeViewModel(
         } catch (e: Exception) {
             Log.e(AppApplication.TAG, "import: ", e)
             AppApplication.toast(e.message)
+        }
+    }
+
+    fun updateRevocationList() = AppApplication.executor.execute {
+        val context = AppApplication.app
+        try {
+            if (RevocationList.update()) {
+                AppApplication.toast(context.getString(R.string.revocation_list_updated))
+                // Re-check the certificates on screen against the new list.
+                if (attestationData.value?.data is AttestationData &&
+                    attestationRepository.hasCertificates()) {
+                    attestationData.postValue(attestationRepository.reparseCerts())
+                }
+            } else {
+                AppApplication.toast(context.getString(R.string.revocation_list_up_to_date))
+            }
+        } catch (e: Exception) {
+            Log.w(AppApplication.TAG, "updateRevocationList: ", e)
+            AppApplication.toast(context.getString(R.string.revocation_list_update_failed, e.message))
         }
     }
 

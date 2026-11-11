@@ -9,6 +9,15 @@
     <string name="copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
     <string name="secret_mode">Μυστική λειτουργία</string>
     <string name="secret_mode_hidden">Κρυφό</string>
+    <string name="revocation_list">Λίστα ανάκλησης</string>
+    <string name="revocation_list_update">Ενημέρωση</string>
+    <string name="revocation_list_info">Προέλευση: %1$s\nΚαταχωρήσεις: %2$d\nΤελευταία τροποποίηση: %3$s\nΤελευταίος έλεγχος: %4$s\nURL: %5$s</string>
+    <string name="revocation_list_embedded">ενσωματωμένη στην εφαρμογή</string>
+    <string name="revocation_list_downloaded">ληφθείσα</string>
+    <string name="revocation_list_never">ποτέ</string>
+    <string name="revocation_list_updated">Η λίστα ανάκλησης ενημερώθηκε</string>
+    <string name="revocation_list_up_to_date">Η λίστα ανάκλησης είναι ενημερωμένη</string>
+    <string name="revocation_list_update_failed">Αποτυχία ενημέρωσης της λίστας ανάκλησης: %s</string>
     <string name="import_attest_key">Εισαγωγή βεβαίωσης κλειδιού</string>
     <string name="attest_device_props">Βεβαίωση ιδιοτήτων συσκευής</string>
     <string name="id_type_serial">Βεβαίωση σειριακού συσκευής</string>

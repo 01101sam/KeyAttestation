@@ -9,6 +9,15 @@
     <string name="copied_to_clipboard">已复制到剪贴板</string>
     <string name="secret_mode">隐私模式</string>
     <string name="secret_mode_hidden">已隐藏</string>
+    <string name="revocation_list">吊销列表</string>
+    <string name="revocation_list_update">更新</string>
+    <string name="revocation_list_info">来源：%1$s\n条目数：%2$d\n最后修改：%3$s\n上次检查：%4$s\nURL：%5$s</string>
+    <string name="revocation_list_embedded">应用内置</string>
+    <string name="revocation_list_downloaded">已下载</string>
+    <string name="revocation_list_never">从未</string>
+    <string name="revocation_list_updated">吊销列表已更新</string>
+    <string name="revocation_list_up_to_date">吊销列表已是最新</string>
+    <string name="revocation_list_update_failed">吊销列表更新失败：%s</string>
     <string name="import_attest_key">导入认证密钥</string>
     <string name="attest_device_props">认证设备型号</string>
     <string name="id_type_serial">认证设备序列号</string>

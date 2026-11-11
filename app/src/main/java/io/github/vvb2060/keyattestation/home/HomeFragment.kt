@@ -21,6 +21,8 @@ import io.github.vvb2060.keyattestation.R
 import io.github.vvb2060.keyattestation.app.AlertDialogFragment
 import io.github.vvb2060.keyattestation.app.AppFragment
 import io.github.vvb2060.keyattestation.attestation.Attestation
+import io.github.vvb2060.keyattestation.attestation.AuthorizationList
+import io.github.vvb2060.keyattestation.attestation.RevocationList
 import io.github.vvb2060.keyattestation.databinding.HomeBinding
 import io.github.vvb2060.keyattestation.keystore.KeyStoreManager
 import io.github.vvb2060.keyattestation.lang.AttestationException
@@ -261,12 +263,37 @@ class HomeFragment : AppFragment(), HomeAdapter.Listener, MenuProvider {
             R.id.menu_import_attest_key -> {
                 import.launch("text/xml")
             }
+            R.id.menu_revocation_list -> {
+                showRevocationListDialog()
+            }
             R.id.menu_about -> {
                 showAboutDialog()
             }
             else -> return false
         }
         return true
+    }
+
+    private fun showRevocationListDialog() {
+        val context = requireContext()
+        val info = RevocationList.getInfo()
+        val source = getString(if (info.downloaded()) R.string.revocation_list_downloaded
+                               else R.string.revocation_list_embedded)
+        val lastChecked = if (info.lastChecked() > 0) {
+            AuthorizationList.formatDate(java.util.Date(info.lastChecked()))
+        } else {
+            getString(R.string.revocation_list_never)
+        }
+        val message = getString(R.string.revocation_list_info, source, info.entries(),
+            AuthorizationList.formatDate(java.util.Date(info.lastModified())), lastChecked, info.url())
+        AlertDialog.Builder(context)
+            .setTitle(R.string.revocation_list)
+            .setMessage(message)
+            .setPositiveButton(R.string.revocation_list_update) { _, _ ->
+                viewModel.updateRevocationList()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     private fun showAboutDialog() {

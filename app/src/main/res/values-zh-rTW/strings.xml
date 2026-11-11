@@ -9,6 +9,15 @@
     <string name="copied_to_clipboard">已複製到剪貼簿</string>
     <string name="secret_mode">隱私模式</string>
     <string name="secret_mode_hidden">已隱藏</string>
+    <string name="revocation_list">撤銷清單</string>
+    <string name="revocation_list_update">更新</string>
+    <string name="revocation_list_info">來源：%1$s\n項目數：%2$d\n最後修改：%3$s\n上次檢查：%4$s\nURL：%5$s</string>
+    <string name="revocation_list_embedded">應用程式內建</string>
+    <string name="revocation_list_downloaded">已下載</string>
+    <string name="revocation_list_never">從未</string>
+    <string name="revocation_list_updated">撤銷清單已更新</string>
+    <string name="revocation_list_up_to_date">撤銷清單已是最新</string>
+    <string name="revocation_list_update_failed">撤銷清單更新失敗：%s</string>
     <string name="import_attest_key">匯入認證金鑰</string>
     <string name="attest_device_props">認證裝置型號</string>
     <string name="id_type_serial">認證裝置序號</string>

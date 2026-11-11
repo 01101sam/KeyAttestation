@@ -9,6 +9,15 @@
     <string name="copied_to_clipboard">Copiado para a área de transferência</string>
     <string name="secret_mode">Modo secreto</string>
     <string name="secret_mode_hidden">Oculto</string>
+    <string name="revocation_list">Lista de revogação</string>
+    <string name="revocation_list_update">Atualizar</string>
+    <string name="revocation_list_info">Origem: %1$s\nEntradas: %2$d\nÚltima modificação: %3$s\nÚltima verificação: %4$s\nURL: %5$s</string>
+    <string name="revocation_list_embedded">incorporada no app</string>
+    <string name="revocation_list_downloaded">baixada</string>
+    <string name="revocation_list_never">nunca</string>
+    <string name="revocation_list_updated">Lista de revogação atualizada</string>
+    <string name="revocation_list_up_to_date">A lista de revogação está atualizada</string>
+    <string name="revocation_list_update_failed">Falha ao atualizar a lista de revogação: %s</string>
     <string name="import_attest_key">Importar chave de atestado</string>
     <string name="attest_device_props">Atestar props do dispositivo</string>
     <string name="id_type_serial">Atestar número de série do dispositivo</string>

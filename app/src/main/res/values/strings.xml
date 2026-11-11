@@ -9,6 +9,15 @@
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="secret_mode">Secret mode</string>
     <string name="secret_mode_hidden">Hidden</string>
+    <string name="revocation_list">Revocation list</string>
+    <string name="revocation_list_update">Update</string>
+    <string name="revocation_list_info">Source: %1$s\nEntries: %2$d\nLast modified: %3$s\nLast checked: %4$s\nURL: %5$s</string>
+    <string name="revocation_list_embedded">embedded in the app</string>
+    <string name="revocation_list_downloaded">downloaded</string>
+    <string name="revocation_list_never">never</string>
+    <string name="revocation_list_updated">Revocation list updated</string>
+    <string name="revocation_list_up_to_date">Revocation list is up to date</string>
+    <string name="revocation_list_update_failed">Failed to update revocation list: %s</string>
     <string name="import_attest_key">Import attest key</string>
     <string name="attest_device_props">Attest device props</string>
     <string name="id_type_serial">Attest device serial</string>
