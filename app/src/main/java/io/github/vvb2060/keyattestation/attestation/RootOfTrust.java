@@ -22,12 +22,20 @@ import org.bouncycastle.asn1.ASN1Encodable;
 import org.bouncycastle.asn1.ASN1Sequence;
 
 import java.security.cert.CertificateParsingException;
+import java.util.Map;
 
 public class RootOfTrust {
     private static final int VERIFIED_BOOT_KEY_INDEX = 0;
     private static final int DEVICE_LOCKED_INDEX = 1;
     private static final int VERIFIED_BOOT_STATE_INDEX = 2;
     private static final int VERIFIED_BOOT_HASH_INDEX = 3;
+
+    // SHA-256 digests of the AOSP AVB test keys (external/avb/test/data/testkey_rsa*.pem)
+    // in AVB public key format, as reported in verifiedBootKey.
+    private static final Map<String, String> AVB_TEST_KEYS = Map.of(
+            "22de3994532196f61c039e90260d78a93a4c57362c7e789be928036e80b77c8c", "testkey_rsa2048",
+            "7728e30f50bfa5cea165f473175a08803f6a8346642b5aa10913e9d9e6defef6", "testkey_rsa4096",
+            "e15e2365469ce672a91d02cc8d9c2f29b787481e574d3b56ac774153d7ced614", "testkey_rsa8192");
 
     public static final int KM_VERIFIED_BOOT_VERIFIED = 0;
     public static final int KM_VERIFIED_BOOT_SELF_SIGNED = 1;
@@ -92,6 +100,14 @@ public class RootOfTrust {
 
     public byte[] getVerifiedBootHash() {
         return verifiedBootHash;
+    }
+
+    /**
+     * @return the name of the public AOSP AVB test key that signed vbmeta, or null.
+     */
+    public String getAvbTestKeyName() {
+        if (verifiedBootKey == null) return null;
+        return AVB_TEST_KEYS.get(BaseEncoding.base16().lowerCase().encode(verifiedBootKey));
     }
 
     @Override

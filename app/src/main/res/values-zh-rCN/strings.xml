@@ -39,6 +39,8 @@
     <string name="knox_root_cert_summary">Knox 认证使用三星认证密钥（SAK）签名。</string>
     <string name="oem_root_cert">设备制造商的根证书</string>
     <string name="oem_root_cert_summary">此设备信任该根证书，但它可能不被其它人信任。</string>
+    <string name="vbmeta_testkey">vbmeta 被测试密钥签名</string>
+    <string name="vbmeta_testkey_summary">verifiedBootKey 是公开的 AOSP 测试密钥 %1$s，任何人都可以用它签名镜像，验证启动无法提供保护。</string>
 
     <string name="cert_chain">证书链</string>
     <string name="cert_chain_description">证书链是用于验证密钥的证书列表。从该密钥的证书开始，每个证书均由链中下一个证书签名，到根证书为止。认证的可信度取决于证书链的根证书。</string>

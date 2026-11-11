@@ -23,7 +23,9 @@ class HeaderViewHolder(itemView: View, binding: HomeHeaderBinding) : HomeViewHol
             icon.setImageDrawable(context.getDrawable(data.icon))
             title.setText(data.title)
             if (data.description != 0) {
-                summary.setText(data.description)
+                summary.text = data.descriptionArg?.let {
+                    context.getString(data.description, it)
+                } ?: context.getString(data.description)
                 summary.isVisible = true
             } else {
                 summary.isVisible = false
