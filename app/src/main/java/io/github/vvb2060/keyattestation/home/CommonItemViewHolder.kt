@@ -1,7 +1,12 @@
 package io.github.vvb2060.keyattestation.home
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.os.Build
 import android.util.Pair
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import io.github.vvb2060.keyattestation.R
 import io.github.vvb2060.keyattestation.attestation.Attestation.KM_SECURITY_LEVEL_STRONG_BOX
@@ -16,6 +21,15 @@ open class CommonItemViewHolder<T>(itemView: View, binding: HomeCommonItemBindin
     HomeViewHolder<T, HomeCommonItemBinding>(itemView, binding) {
 
     companion object {
+        private fun copyToClipboard(context: Context, text: String) {
+            val clipboard = context.getSystemService(ClipboardManager::class.java)
+            clipboard.setPrimaryClip(ClipData.newPlainText(null, text))
+            // Android 13+ shows its own confirmation for clipboard writes.
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+            }
+        }
+
         val SIMPLE_CREATOR = Creator<Pair<String, String>> { inflater, parent ->
             val binding = HomeCommonItemBinding.inflate(inflater, parent, false)
             object : CommonItemViewHolder<Pair<String, String>>(binding.root, binding) {
@@ -90,6 +104,15 @@ open class CommonItemViewHolder<T>(itemView: View, binding: HomeCommonItemBindin
                     this.binding.apply {
                         root.setOnClickListener {
                             listener.onCommonDataClick(data)
+                        }
+                        root.setOnLongClickListener {
+                            if (data.data.isEmpty()) return@setOnLongClickListener false
+                            // For the root of trust, the verified boot hash is what users need.
+                            val text = data.data.lineSequence()
+                                .firstOrNull { it.startsWith("verifiedBootHash:") }
+                                ?.substringAfter(':')?.trim() ?: data.data
+                            copyToClipboard(it.context, text)
+                            true
                         }
                         icon.isVisible = false
                     }

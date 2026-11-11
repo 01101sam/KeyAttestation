@@ -6,6 +6,7 @@
     <string name="use_strongbox">Use StrongBox</string>
     <string name="use_attest_key">Use attest key</string>
     <string name="use_rsa">Use RSA key</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="import_attest_key">Import attest key</string>
     <string name="attest_device_props">Attest device props</string>
     <string name="id_type_serial">Attest device serial</string>
