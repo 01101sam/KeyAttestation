@@ -5,6 +5,7 @@
     <string name="use_sak">Usar atestado Knox</string>
     <string name="use_strongbox">Usar StrongBox</string>
     <string name="use_attest_key">Usar chave de atestado</string>
+    <string name="use_rsa">Usar chave RSA</string>
     <string name="import_attest_key">Importar chave de atestado</string>
     <string name="attest_device_props">Atestar props do dispositivo</string>
     <string name="id_type_serial">Atestar número de série do dispositivo</string>

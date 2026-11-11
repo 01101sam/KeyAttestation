@@ -34,6 +34,7 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.cert.CertificateEncodingException;
 import java.security.spec.ECGenParameterSpec;
+import java.security.spec.RSAKeyGenParameterSpec;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
@@ -46,7 +47,6 @@ import rikka.shizuku.ShizukuApiConstants;
 
 public class AndroidKeyStore extends IAndroidKeyStore.Stub {
     private final KeyStore keyStore;
-    private final KeyPairGenerator keyPairGenerator;
     private int clientUid = -1;
 
     public AndroidKeyStore() throws Exception {
@@ -57,8 +57,6 @@ public class AndroidKeyStore extends IAndroidKeyStore.Stub {
         }
         keyStore = KeyStore.getInstance("AndroidKeyStore");
         keyStore.load(null);
-        keyPairGenerator = KeyPairGenerator.getInstance(
-                KeyProperties.KEY_ALGORITHM_EC, "AndroidKeyStore");
     }
 
     private static void fixEnv() throws Exception {
@@ -205,16 +203,23 @@ public class AndroidKeyStore extends IAndroidKeyStore.Stub {
                                        boolean useStrongBox,
                                        boolean includeProps,
                                        boolean uniqueIdIncluded,
+                                       boolean useRsa,
                                        int[] attestationIds) {
         var now = new Date();
         boolean attestKey = Objects.equals(alias, attestKeyAlias);
         var purposes = attestKey ? KeyProperties.PURPOSE_ATTEST_KEY : KeyProperties.PURPOSE_SIGN;
 
         var builder = new KeyGenParameterSpec_rename.Builder(alias, purposes)
-                .setAlgorithmParameterSpec(new ECGenParameterSpec("secp256r1"))
                 .setDigests(KeyProperties.DIGEST_SHA256)
                 .setCertificateNotBefore(now)
                 .setAttestationChallenge(now.toString().getBytes());
+        if (useRsa) {
+            builder.setAlgorithmParameterSpec(
+                            new RSAKeyGenParameterSpec(2048, RSAKeyGenParameterSpec.F4))
+                    .setSignaturePaddings(KeyProperties.SIGNATURE_PADDING_RSA_PKCS1);
+        } else {
+            builder.setAlgorithmParameterSpec(new ECGenParameterSpec("secp256r1"));
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && useStrongBox) {
             builder.setIsStrongBoxBacked(true);
         }
@@ -237,12 +242,13 @@ public class AndroidKeyStore extends IAndroidKeyStore.Stub {
         return builder.build();
     }
 
-    private static AttestParameterSpec genSakParameter(KeyGenParameterSpec params) {
+    private static AttestParameterSpec genSakParameter(KeyGenParameterSpec params,
+                                                       String algorithm) {
         var alias = params.getKeystoreAlias();
         var challenge = params.getAttestationChallenge();
         var packageName = ActivityThread.currentApplication().getPackageName();
         var builder = new AttestParameterSpec.Builder(alias, challenge)
-                .setAlgorithm(KeyProperties.KEY_ALGORITHM_EC)
+                .setAlgorithm(algorithm)
                 .setKeyGenParameterSpec(params)
                 .setVerifiableIntegrity(true)
                 .setDeviceAttestation(true)
@@ -257,15 +263,18 @@ public class AndroidKeyStore extends IAndroidKeyStore.Stub {
                                   boolean includeProps,
                                   boolean uniqueIdIncluded,
                                   int idFlags,
+                                  boolean useRsa,
                                   boolean useSak) {
         var params = (KeyGenParameterSpec) genParameter(alias, attestKeyAlias, useStrongBox,
-                includeProps, uniqueIdIncluded, flagsToArray(idFlags));
+                includeProps, uniqueIdIncluded, useRsa, flagsToArray(idFlags));
+        var algorithm = useRsa ? KeyProperties.KEY_ALGORITHM_RSA : KeyProperties.KEY_ALGORITHM_EC;
         try {
+            var keyPairGenerator = KeyPairGenerator.getInstance(algorithm, "AndroidKeyStore");
             keyPairGenerator.initialize(params);
             keyPairGenerator.generateKeyPair();
             if (useSak) {
                 var utils = new com.samsung.android.security.keystore.AttestationUtils();
-                var spec = genSakParameter(params);
+                var spec = genSakParameter(params, algorithm);
                 Iterable<byte[]> certChain;
                 if (spec.isDeviceAttestation()) {
                     certChain = utils.attestDevice(spec);

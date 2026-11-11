@@ -36,6 +36,10 @@ public class KeyGenParameterSpec_rename {
             return this;
         }
 
+        public Builder setSignaturePaddings(String... paddings) {
+            return this;
+        }
+
         public Builder setAttestationChallenge(byte[] attestationChallenge) {
             return this;
         }

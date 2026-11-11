@@ -119,6 +119,12 @@ class HomeViewModel(
             sp.edit { putBoolean("prefer_sak", value) }
         }
 
+    var preferRsa = sp.getBoolean("prefer_rsa", false)
+        set(value) {
+            field = value
+            sp.edit { putBoolean("prefer_rsa", value) }
+        }
+
     val canCheckRkp: Boolean
         get() {
             if (KeyStoreManager.getRemoteKeyStore() == null) return false
@@ -190,7 +196,7 @@ class HomeViewModel(
 
 
         val result = attestationRepository.attest(reset, useAttestKey, useStrongBox,
-                includeProps, uniqueIdIncluded, idFlags, useSak)
+                includeProps, uniqueIdIncluded, idFlags, preferRsa, useSak)
 
         attestationData.postValue(result)
     }

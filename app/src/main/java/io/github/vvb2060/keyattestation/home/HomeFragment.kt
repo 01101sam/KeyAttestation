@@ -162,6 +162,7 @@ class HomeFragment : AppFragment(), HomeAdapter.Listener, MenuProvider {
         menuInflater.inflate(R.menu.home, menu)
         menu.findItem(R.id.menu_use_strongbox).isChecked = viewModel.preferStrongBox
         menu.findItem(R.id.menu_use_attest_key).isChecked = viewModel.preferAttestKey
+        menu.findItem(R.id.menu_use_rsa).isChecked = viewModel.preferRsa
         menu.findItem(R.id.menu_include_props).isChecked = viewModel.preferIncludeProps
         menu.findItem(R.id.menu_id_type_serial).isChecked = viewModel.preferIdAttestationSerial
         menu.findItem(R.id.menu_id_type_imei).isChecked = viewModel.preferIdAttestationIMEI
@@ -215,6 +216,10 @@ class HomeFragment : AppFragment(), HomeAdapter.Listener, MenuProvider {
                 viewModel.preferAttestKey = status
                 viewModel.load()
             }
+            R.id.menu_use_rsa -> {
+                viewModel.preferRsa = status
+                viewModel.load()
+            }
             R.id.menu_include_props -> {
                 viewModel.preferIncludeProps = status
                 viewModel.load()
@@ -242,7 +247,8 @@ class HomeFragment : AppFragment(), HomeAdapter.Listener, MenuProvider {
                 viewModel.load(true)
             }
             R.id.menu_save -> {
-                save.launch("${Build.PRODUCT}-${AppApplication.TAG}.p7b")
+                val suffix = if (viewModel.preferRsa) "-RSA" else ""
+                save.launch("${Build.PRODUCT}-${AppApplication.TAG}$suffix.p7b")
             }
             R.id.menu_load -> {
                 load.launch("*/*")

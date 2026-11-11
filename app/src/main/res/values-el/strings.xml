@@ -5,6 +5,7 @@
     <string name="use_sak">Χρήση βεβαίωσης Knox</string>
     <string name="use_strongbox">Χρήση StrongBox</string>
     <string name="use_attest_key">Χρήση βεβαίωσης κλειδιού</string>
+    <string name="use_rsa">Χρήση κλειδιού RSA</string>
     <string name="import_attest_key">Εισαγωγή βεβαίωσης κλειδιού</string>
     <string name="attest_device_props">Βεβαίωση ιδιοτήτων συσκευής</string>
     <string name="id_type_serial">Βεβαίωση σειριακού συσκευής</string>
