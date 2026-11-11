@@ -89,6 +89,8 @@ open class CommonItemViewHolder<T>(itemView: View, binding: HomeCommonItemBindin
                     binding.title.setText(data.title)
                     if (data.data.isNullOrEmpty()) {
                         binding.summary.setText(R.string.empty)
+                    } else if (SecretMode.hides(data.title)) {
+                        binding.summary.setText(R.string.secret_mode_hidden)
                     } else {
                         binding.summary.text = data.data
                     }
@@ -124,6 +126,8 @@ open class CommonItemViewHolder<T>(itemView: View, binding: HomeCommonItemBindin
                         text1.setText(if (data.tee) R.string.tee_enforced else R.string.sw_enforced)
                         if (data.data.isEmpty()) {
                             summary.setText(R.string.empty)
+                        } else if (SecretMode.hides(data.title)) {
+                            summary.setText(R.string.secret_mode_hidden)
                         } else {
                             summary.text = data.data
                         }
@@ -193,7 +197,12 @@ open class CommonItemViewHolder<T>(itemView: View, binding: HomeCommonItemBindin
                             data.attestation?.let { listener.onAttestationInfoClick(it) }
                         }
                         root.setOnClickListener {
-                            val stringData = StringData(R.string.cert_info, data.cert.toString())
+                            val text = if (SecretMode.enabled) {
+                                it.context.getString(R.string.secret_mode_hidden)
+                            } else {
+                                data.cert.toString()
+                            }
+                            val stringData = StringData(R.string.cert_info, text)
                             listener.onCommonDataClick(stringData)
                         }
                     }
@@ -231,14 +240,15 @@ open class CommonItemViewHolder<T>(itemView: View, binding: HomeCommonItemBindin
                     val sb = StringBuilder()
                     val cert = data.cert
                     val res = context.resources
+                    val hidden = if (SecretMode.enabled) res.getString(R.string.secret_mode_hidden) else null
                     sb.append(res.getString(R.string.cert_subject))
-                            .append(cert.subjectDN)
+                            .append(hidden ?: cert.subjectDN)
                             .append("\n")
                             .append(res.getString(R.string.cert_not_before))
-                            .append(AuthorizationList.formatDate(cert.notBefore))
+                            .append(hidden ?: AuthorizationList.formatDate(cert.notBefore))
                             .append("\n")
                             .append(res.getString(R.string.cert_not_after))
-                            .append(AuthorizationList.formatDate(cert.notAfter))
+                            .append(hidden ?: AuthorizationList.formatDate(cert.notAfter))
 
                     data.provisioningInfo?.apply {
                         certsIssued?.let {

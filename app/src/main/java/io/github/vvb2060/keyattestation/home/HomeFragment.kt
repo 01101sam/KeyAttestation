@@ -163,6 +163,7 @@ class HomeFragment : AppFragment(), HomeAdapter.Listener, MenuProvider {
         menu.findItem(R.id.menu_use_strongbox).isChecked = viewModel.preferStrongBox
         menu.findItem(R.id.menu_use_attest_key).isChecked = viewModel.preferAttestKey
         menu.findItem(R.id.menu_use_rsa).isChecked = viewModel.preferRsa
+        menu.findItem(R.id.menu_secret_mode).isChecked = viewModel.secretMode
         menu.findItem(R.id.menu_include_props).isChecked = viewModel.preferIncludeProps
         menu.findItem(R.id.menu_id_type_serial).isChecked = viewModel.preferIdAttestationSerial
         menu.findItem(R.id.menu_id_type_imei).isChecked = viewModel.preferIdAttestationIMEI
@@ -215,6 +216,10 @@ class HomeFragment : AppFragment(), HomeAdapter.Listener, MenuProvider {
             R.id.menu_use_attest_key -> {
                 viewModel.preferAttestKey = status
                 viewModel.load()
+            }
+            R.id.menu_secret_mode -> {
+                viewModel.secretMode = status
+                adapter.notifyDataSetChanged()
             }
             R.id.menu_use_rsa -> {
                 viewModel.preferRsa = status

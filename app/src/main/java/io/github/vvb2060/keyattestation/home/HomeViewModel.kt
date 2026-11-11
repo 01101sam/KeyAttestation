@@ -119,6 +119,13 @@ class HomeViewModel(
             sp.edit { putBoolean("prefer_sak", value) }
         }
 
+    var secretMode = sp.getBoolean("secret_mode", false)
+        set(value) {
+            field = value
+            SecretMode.enabled = value
+            sp.edit { putBoolean("secret_mode", value) }
+        }
+
     var preferRsa = sp.getBoolean("prefer_rsa", false)
         set(value) {
             field = value
@@ -132,6 +139,7 @@ class HomeViewModel(
         }
 
     init {
+        SecretMode.enabled = secretMode
         load()
     }
 

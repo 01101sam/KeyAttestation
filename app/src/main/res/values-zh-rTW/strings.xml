@@ -7,6 +7,8 @@
     <string name="use_attest_key">使用認證金鑰</string>
     <string name="use_rsa">使用 RSA 金鑰</string>
     <string name="copied_to_clipboard">已複製到剪貼簿</string>
+    <string name="secret_mode">隱私模式</string>
+    <string name="secret_mode_hidden">已隱藏</string>
     <string name="import_attest_key">匯入認證金鑰</string>
     <string name="attest_device_props">認證裝置型號</string>
     <string name="id_type_serial">認證裝置序號</string>
